@@ -1,0 +1,22 @@
+<ng-container *ngIf="this.isDataReady">
+	<div class="friends-header">
+		<h3>Друзья ({{friendsIdList.length}})</h3>
+		<button *ngIf="addDeleteButtonToggle && !this.isItMyPage()" (click)="deleteFriendById(pageIdFromParams)" class="btn btn-danger">Удалить</button>
+		<button *ngIf="!addDeleteButtonToggle && !this.isItMyPage()" (click)="createFR(pageIdFromParams)" class="btn btn-success">Добавить</button>
+	</div>
+	<div *ngFor="let friend of mapAvaAndName | keyvalue; index as i"  (click)="transitToUserByName(friend.key)" class="friend-item">
+		<img src="data:image/png;base64,{{friend.value}}" id="flpreview-id" class="fl-avatar"/>
+		<p class="fl-name">{{friend.key}}</p>
+	</div>
+</ng-container>
+<ng-container *ngIf="!this.isDataReady">
+	<div class="friends-header">
+		<h3>Друзья
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-info" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</h3>
+	</div>
+</ng-container>

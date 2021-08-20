@@ -1,0 +1,19 @@
+<h2>Регистрация</h2>
+<div [formGroup]="registrationForm" class="form-group">
+	<label>Имя</label>
+	<input [formControl]="userNameControl" type="text" name="" id="username_fc" class="form-control">
+	<label>Пароль</label>
+	<input [formControl]="passwordControl" type="password" name="" id="password_fc" class="form-control">
+</div>
+<div>
+	<div class="custom-spacer-x"> </div>
+	<button (click)="registerUser(user)" class="btn btn-success">Зарегистрировать</button>
+</div>
+<div class="custom-spacer-y"></div>
+<div *ngIf="responseStatus">
+	<div class="bth btn-success">{{responseMessage}}</div>
+</div>
+
+<div *ngIf="!responseStatus">
+	<div class="bth btn-danger">{{responseMessage}}</div>
+</div>

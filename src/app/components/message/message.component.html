@@ -1,0 +1,50 @@
+<ng-container *ngIf="isDataReady">
+	<div *ngFor="let message of messageArray" (keyup.escape)="goToDialogs()">
+		<div *ngIf="message.authorId===userId" class="om-message-class">
+			<div class="message-box">
+				<div class="message-info-box">
+					<div>
+						<img (click)="navigateToUserPageById(message.authorId)" src="data:image/png;base64,{{userAvatar}}" id="Uphoto-id" class="chat-avatar"/>
+						{{message.authorName}}
+						{{message.created | date: 'medium'}}
+						<button (click)="deleteMessage(this.message)" class="btn btn-outline-success">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+								<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+				<div class="message-im-text-box">
+					{{message.text}}
+				</div>
+			</div>
+		</div>
+		<div *ngIf="message.destinationId===userId" class="im-message-class">
+			<div class="message-box">
+				<div class="message-info-box">
+					<div>
+						{{message.created | date: 'medium'}}
+						{{message.authorName}}
+						<img (click)="navigateToUserPageById(message.authorId)" src="data:image/png;base64,{{destAvatar}}" id="Dphoto-id" class="chat-avatar"/>
+					</div>
+				</div>
+				<div class="message-om-text-box">
+					{{message.text}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div [formGroup]="chatForm" class="chat-box">
+<!--		<input (keyup.enter)="sendMessage()" [formControl]="chatControl" autocomplete="off" type="text" aria-multiline="true" name="" id="chat-fc" class="form-control">-->
+		<textarea (keyup.enter)="sendMessage()" [formControl]="chatControl" id="chat-fc" class="form-control" autofocus="true" placeholder="Написать.."></textarea>
+		<!--	<button (click)="sendMessage()" class="btn btn-success">Отправить</button>-->
+	</div>
+</ng-container>
+<ng-container *ngIf="!this.isDataReady">
+	<div class="d-flex justify-content-center temp">
+		<div class="spinner-border text-info" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+</ng-container>

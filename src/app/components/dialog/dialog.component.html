@@ -1,0 +1,33 @@
+<ng-container *ngIf="this.isUserDataReady">
+	<div *ngFor="let item of userArray">
+		<div (click)="transitToMessages(item.id)" class="btn btn-success dialog-item">
+			<div *ngFor="let user of userIdAndAvaArray">
+				<div *ngIf="item.id == user.userId">
+					<img src="data:image/png;base64,{{user.avatar}}" id="photo-id" class="dialog-avatar"/>
+				</div>
+			</div>
+			<div class="name-in-row">
+				{{item.name}} {{item.lastName}}
+			</div>
+			<div class="custom-spacer-inline"> </div>
+			<div *ngFor="let user of userIdAndAvaArray">
+				<div *ngIf="mapIdAndLastMessage.get(item.id).authorId == user.userId">
+					<img src="data:image/png;base64,{{user.avatar}}" class="dialog-inner-avatar"/>
+				</div>
+			</div>
+			<div class="lm-text">{{mapIdAndLastMessage.get(item.id).text}}</div>
+			<div class="custom-spacer-inline"> </div>
+			<div>{{mapIdAndLastMessage.get(item.id).created | date: 'medium'}}</div>
+		</div>
+	</div>
+</ng-container>
+<ng-container *ngIf="!this.isUserDataReady">
+	<div class="d-flex justify-content-center temp">
+		<div class="spinner-border text-info" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+</ng-container>
+
+
+

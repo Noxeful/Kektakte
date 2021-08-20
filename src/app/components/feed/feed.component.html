@@ -1,0 +1,29 @@
+<ng-container *ngIf="this.isDataReady">
+	<app-wall-post *ngFor="let item of posts" [wallPost]="item" [userIdFromParams]="0" [isItFeed]="true"></app-wall-post>
+</ng-container>
+<ng-container *ngIf="!this.isDataReady">
+	<div class="friends-header">
+		<h3>Лента новостей
+			<div class="d-flex justify-content-center">
+				<div class="spinner-border text-info" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</h3>
+	</div>
+</ng-container>
+<!--<div class="feed-block">-->
+<!--	Тут однажды будут новости-->
+<!--</div>-->
+<!--<div class="feed-block">-->
+<!--	Тут однажды будут новости-->
+<!--</div>-->
+<!--<div class="feed-block">-->
+<!--	Тут однажды будут новости-->
+<!--</div>-->
+<!--<div class="feed-block">-->
+<!--	Тут однажды будут новости-->
+<!--</div>-->
+<!--<div class="feed-block">-->
+<!--	Тут однажды будут новости-->
+<!--</div>-->

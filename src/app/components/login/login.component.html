@@ -1,0 +1,34 @@
+<h2>Авторизация</h2>
+<div [formGroup]="loginForm" class="form-group">
+	<label>Имя</label>
+	<input [formControl]="userNameControl" type="text" name="" id="username_fc" class="form-control">
+	<label>Пароль</label>
+	<input [formControl]="passwordControl" type="password" name="" id="password_fc" class="form-control">
+</div>
+<div>
+	<button (click)="nameFromHeaders(user)" class="btn btn-success">Войти</button>
+	<div class="custom-spacer"></div>
+	<button class="btn btn-info" (click)="goToRegistration()">Регистрация</button>
+</div>
+<div class="custom-spacer-y"></div>
+<div *ngIf="responseStatus">
+	<div class="btn btn-success">{{responseMessage}}</div>
+</div>
+
+<div *ngIf="!responseStatus">
+	<div class="bth btn-danger">{{responseMessage}}</div>
+</div>
+
+
+<!--<div *ngIf="doneTemp"	>-->
+<!--	<h3>Локальная</h3>-->
+<!--	<div> Имя из формы: {{user.userName}}</div>-->
+<!--	<div> Пароль из формы: {{user.password}}</div>-->
+<!--</div>-->
+
+<!--<div *ngIf="done">-->
+<!--	<h3>С сервера</h3>-->
+<!--	<div>Получено от сервера:</div>-->
+<!--	<div>Имя: {{ receivedUser.userName }}</div>-->
+<!--	<div>Возраст: {{ receivedUser.password }}</div>-->
+<!--</div>-->

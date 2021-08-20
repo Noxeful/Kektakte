@@ -1,0 +1,10 @@
+<div *ngFor="let frItem of friendsRequestsArray; index as frI">
+	<div *ngFor="let mapItem of mapAvaAndName | keyvalue; index as mapI" class="friend-request-item">
+		<div *ngIf="frI == mapI && frItem.isResponseGiven == false">
+			<img src="data:image/png;base64,{{mapItem.value}}" id="frpreview-id" class="fr-avatar" (click)="goToUser(frItem.userId)"/>
+			<p class="fr-name" (click)="goToUser(frItem.userId)">{{mapItem.key}}</p>
+			<button (click)="acceptFriendsRequest(frItem)" class="btn btn-success">Добавить</button>
+			<button (click)="declineFriendsRequest(frItem)" class="btn btn-danger">Отклонить</button>
+		</div>
+	</div>
+</div>

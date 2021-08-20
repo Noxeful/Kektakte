@@ -1,0 +1,31 @@
+<div class="harold-center">
+	<img src="https://sun9-76.userapi.com/c840731/v840731461/8bbce/iIN2Wwn3XxE.jpg" />
+</div>
+
+<button (click)="kekCheck(user)">send request to test API (KekPlusTen)</button>
+<button (click)="kekCheck2(messageDTO)">че то атм собирает</button>
+
+<div>
+	<div>Имя: {{user.userName}}</div>
+	<div>Пароль: {{user.password}}</div>
+</div>
+
+<button (click)="kekCreate(createMessageDto)">создать сообщеньку</button>
+<button (click)="kekDelete(16)">удалить сообщеньку</button>
+<button (click)="goToMainPage()">Моя стр</button>
+<!--<button (click)="kekCreateAvatar(user)">Создать аву</button>-->
+<div>__________________</div>
+<div>
+	<label for="image-input">Выберите изображение</label>
+	<input (change)="getBase64FromImage()" type="file" id="image-input"/>
+	<button (click)="saveAvatar(tempBase64)" type="submit" id="image-submit">Сохранить имг в базе</button>
+</div>
+<!--<div *ngIf="renderThisShitDj">-->
+<!--	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" />-->
+<!--	<p>хуй</p>-->
+<!--</div>-->
+<img src="data:image/png;base64,{{base64ForAvatar}}" id="photo-id" class="razmer"/>
+<button (click)="testGetAllFriendsRequests(userIdParams)" class="btn btn-success">Запросить запросы бля</button>
+<button (click)="wierdCalculations2()" class="btn btn-success">посчитать</button>
+<button (click)="wallThing(1)" class="btn btn-success">СТЕНА</button>
+

@@ -1,0 +1,76 @@
+<div class="narrow-column">
+	<img src="data:image/png;base64,{{base64ForAvatar}}" id="photo-id" class="avatar"/>
+	<div *ngIf="!editAva && this.isItMyPage()" (click)="editAvaToggle()" class="btn btn-success">Редактировать</div>
+	<div *ngIf="editAva" class="edit-box">
+		<label for="image-input">Выберите изображение</label>
+		<input (change)="getBase64FromImage()" type="file" id="image-input" class="btn btn-light"/>
+		<button (click)="saveAvatar(tempBase64)" type="submit" id="image-submit" class="btn btn-success">Сохранить</button>
+		<div (click)="editAvaToggle()" class="btn btn-info">Отмена</div>
+	</div>
+	<div *ngIf="!quickMessageToggle && !this.isItMyPage()" (click)="sendQuickMessageToggle()" class="btn btn-info">Написать</div>
+	<div *ngIf="quickMessageToggle" [formGroup]="quickMessageForm" class="quick-mes-box">
+		<label>Введите сообщение</label>
+		<input [formControl]="quickMessageControl" (keyup.enter)="sendQuickMessage()" (keyup.escape)="sendQuickMessageToggle()" autocomplete="off" type="text" class="quick-mes-textfield"/>
+		<button (click)="sendQuickMessage()" type="submit" id="quickMesSubmit" class="btn btn-success">Отправить</button>
+		<button (click)="sendQuickMessageToggle()" class="btn btn-info">Отмена</button>
+	</div>
+	<div>
+	<app-friends-mini-list></app-friends-mini-list>
+	</div>
+</div>
+<div class="wide-column">
+	<div *ngIf="turnOnUserInfo">
+		<h1 class="info-item"> {{myUser.name}} {{myUser.lastName}}</h1>
+		<div class="custom-spacer"></div>
+		<div (click)="editStatus()" *ngIf="status" class="info-item status">{{myUser.status}}</div>
+		<div *ngIf="!status" [formGroup]="statusForm" class="form-group">
+			<input [formControl]="statusControl" type="text" name="" id="status_fc" class="form-control">
+			<button (click)="sendStatusToEdit(this.myUser.status)" class="btn btn-success">Сохранить</button>
+			<button (click)="editStatus()" class="btn btn-danger">Отмена</button>
+		</div>
+		<div class="info-item">Дата рождения: {{myUser.birthDate | date: 'mediumDate'}}</div>
+		<div class="info-item">Город: {{myUser.city}}</div>
+		<div class="info-item">Язык: {{myUser.language}}</div>
+		<div class="info-item">Идеология: {{myUser.ideology}}</div>
+		<div *ngIf="isItMyPage()" class="edit-item">
+			<button (click)="editUser()" class="btn btn-light btn-item">Редактировать</button>
+		</div>
+	</div>
+	<div *ngIf="turnOnEdit" [formGroup]="userEditForm" class="form-group">
+		<label>Имя</label>
+		<input [formControl]="nameControl" type="text" name="" id="name_fc" class="form-control">
+		<label>Фамилия</label>
+		<input [formControl]="lastNameControl" type="text" name="" id="lastName_fc" class="form-control">
+		<label>Дата рождения</label>
+		<input [formControl]="birthDateControl" type="date" name="" id="birthDate_fc" class="form-control">
+		<label>Город</label>
+		<input [formControl]="cityControl" type="text" name="" id="city_fc" class="form-control">
+		<label>Язык</label>
+		<input [formControl]="languageControl" type="text" name="" id="language_fc" class="form-control">
+		<label>Идеология</label>
+		<input [formControl]="ideologyControl" type="text" name="" id="ideology_fc" class="form-control">
+		<div class="custom-spacer"></div>
+		<button (click)="sendUserToEdit(this.myUser)" class="btn btn-success">Сохранить</button>
+		<button (click)="editUser()" class="btn btn-info">Отмена</button>
+	</div>
+	<div *ngIf="responseState">
+		<div class="btn btn-success">{{responseMessage}}</div>
+	</div>
+	<div class="edit-item">
+		<button (click)="interestsBtnToggle()" class="btn btn-light btn-item">Интересы</button>
+	</div>
+	<div *ngIf="isIntrestsOpen" class="interests">
+		<button *ngFor="let interest of interests" class="btn btn-light btn-interest">{{interest}}
+			<button *ngIf="isItMyPage()" (click)="deleteInterest(interest)" type="button" class="close" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</button>
+		<button *ngIf="this.isItMyPage()" (click)="createInterestToggle()" class="btn btn-light btn-interest"> + </button>
+		<div *ngIf="interestFormToggle" [formGroup]="interestForm" class="form-group">
+			<input [formControl]="interestControl" type="text" name="" id="interest_fc" class="form-control">
+			<button (click)="createInterest(interestStr)" class="btn btn-success">Сохранить</button>
+			<button (click)="createInterestToggle()" class="btn btn-success">Отмена</button>
+		</div>
+	</div>
+	<app-wall></app-wall>
+</div>

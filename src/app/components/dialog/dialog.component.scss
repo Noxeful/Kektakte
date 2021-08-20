@@ -1,0 +1,57 @@
+.dialog-item {
+	margin-bottom: 2px;
+	min-height: 70px;
+	min-width: 700px;
+	background-color: rgba(248,253,255,0.51);
+	border-top: 2px solid rgba(35,218,235,0.3);
+	border-bottom: none;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-radius: 0px;
+	color: rgba(0,0,0,0.51);
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+}
+
+.dialog-item:hover {
+	background-color: rgba(35,218,235,0.68);
+	border-top: 2px solid #fafbfc;
+}
+
+.dialog-avatar {
+	width: 50px;
+	height: 50px;
+	margin-right: 7px;
+	border-radius: 50px;
+}
+
+.dialog-inner-avatar {
+	width: 30px;
+	height: 30px;
+	margin-right: 7px;
+	border-radius: 50px;
+}
+
+.custom-spacer-inline {
+	display: block;
+	flex-grow: 1;
+}
+
+.name-in-row {
+	max-width: 15ch;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.lm-text {
+	max-width: 30ch;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.temp {
+	width: 600px;
+	height: 600px;
+}

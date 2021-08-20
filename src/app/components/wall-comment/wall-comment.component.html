@@ -1,0 +1,50 @@
+<div class="wall-comment-item">
+	<div class="comment-header">
+		<img src="data:image/png;base64,{{wallComment.authorAvatar}}" class="comment-avatar"/>
+		<div class="name-in-row">
+			{{wallComment.authorName}}
+		</div>
+		<div>{{wallComment.created | date: 'short'}}</div>
+	</div>
+	<div *ngIf="!this.isEditingOn" class="comment-content">
+		<div class="comment-text">{{wallComment.text}}</div>
+		<img *ngIf="wallComment.picture !== ''" src="data:image/png;base64,{{wallComment.picture}}" class="post-picture"/>
+	</div>
+	<div *ngIf="this.isEditingOn" class="post-editing-content">
+		<div [formGroup]="editCommentForm" class="post-edit-picture-input">
+			<textarea [formControl]="textControl" id="wall-comment-text-edit" class="form-control"></textarea>
+			<img *ngIf="wallComment.picture !== ''" src="data:image/png;base64,{{wallComment.picture}}" class="post-picture"/>
+		</div>
+	</div>
+	<div *ngIf="this.isEditingOn" class="post-additional">
+		<label for="wall-comment-image-edit-input" class="post-additional-item">
+			<img class="additional-icon" src="assets/upload.svg"/>
+		</label>
+		<input (change)="getBase64FromImage()" type="file" id="wall-comment-image-edit-input"/>
+		<div class="post-additional-item" (click)="cancelEditing()">
+			<img class="additional-icon" src="assets/cancel.svg"/>
+			<p>&#160;Отмена</p>
+		</div>
+		<div class="post-additional-item" (click)="saveEditedComment()">
+			<img class="additional-icon" src="assets/send.svg"/>
+			<p>&#160;Сохранить изменения</p>
+		</div>
+	</div>
+	<div class="comment-additional">
+		<div class="comment-additional-item" (click)="this.setWallCommentRating(this.wallComment.commentId, true)">
+			<img class="additional-icon" src="assets/love.svg"/>
+			<p>&#160;{{wallComment.likes}}</p>
+		</div>
+		<div class="comment-additional-item" (click)="this.setWallCommentRating(this.wallComment.commentId, false)">
+			<img class="additional-icon" src="assets/dislike.svg"/>
+			<p>&#160;{{wallComment.dislikes}}</p>
+		</div>
+		<div class="post-additional-item" (click)="editPost()">
+			<img class="additional-icon" src="assets/edit.svg"/>
+		</div>
+		<div *ngIf="this.myUserId === this.wallComment.authorId" class="comment-additional-item" (click)="this.deleteComment(this.wallComment.commentId)">
+			<img class="additional-icon" src="assets/delete.svg"/>
+		</div>
+	</div>
+</div>
+

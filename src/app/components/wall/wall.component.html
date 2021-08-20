@@ -1,0 +1,4 @@
+<app-wall-create-record [myUserId]="myUserId" [userIdFromParams]="userIdFromParams"></app-wall-create-record>
+<div class="wall-header">Все записи</div>
+<!--<div class="btn btn-success" (click)="this.getAllWallPostsById(this.userIdFromParams)"> T E S T </div>-->
+<app-wall-post *ngFor="let item of posts" [wallPost]="item" [userIdFromParams]="userIdFromParams"></app-wall-post>

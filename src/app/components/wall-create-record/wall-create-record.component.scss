@@ -1,0 +1,65 @@
+.wall-create-record {
+	color: rgba(0,0,0,0.51);
+	background-color: rgba(248,253,255,0.51);
+	//border: 2px solid rgba(35,218,235,0.3);
+	margin-top: 10px;
+	border-radius: 5px;
+	min-height: 65px;
+	width: 100%;
+	display: flex;
+	padding: 5px;
+	justify-content: space-around;
+}
+
+input[type="file"] {
+	display: none;
+}
+
+.additional-icon {
+	border-radius: 50px;
+}
+
+.record-avatar {
+	box-sizing: border-box;
+	width: 70px;
+	height: 70px;
+	border-radius: 50px;
+}
+
+.record-header {
+	display: flex;
+	padding: 5px;
+	justify-content: space-between;
+}
+
+.form-control {
+	display: flex;
+	margin: 3px;
+	padding-bottom: 15px;
+	overflow: hidden;
+	word-wrap: break-word;
+	overflow-y: scroll;
+	resize: none;
+}
+
+.first-block {
+	display: flex;
+	flex-direction: row;
+	width: 93%;
+	justify-content: space-between;
+}
+
+.second-block {
+	display: flex;
+	flex-direction: column;
+	width: 5%;
+	padding: 5px;
+}
+
+.record-image {
+	width: 9%;
+}
+
+.record-picture-input {
+	width: 88%
+}

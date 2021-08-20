@@ -1,0 +1,17 @@
+<div class="wall-create-record">
+	<div class="first-block">
+		<div class="record-image">
+			<img src="data:image/png;base64,{{this.myAvatarBase64}}" class="record-avatar"/>
+		</div>
+		<div [formGroup]="addCommentForm" class="record-picture-input">
+			<textarea (keyup.enter)="addComment()" [formControl]="textControl" id="wall-create-text-fc" class="form-control" placeholder="{{this.inputPlaceholderString}}"></textarea>
+		</div>
+	</div>
+	<div class="second-block">
+		<label for="create-comment-image-input">
+			<img class="additional-icon" src="assets/upload.svg"/>
+		</label>
+		<input (change)="getBase64FromImage()" type="file" id="create-comment-image-input"/>
+		<img class="additional-icon" src="assets/send.svg" (click)="addComment()"/>
+	</div>
+</div>

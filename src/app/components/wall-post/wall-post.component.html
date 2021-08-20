@@ -1,0 +1,59 @@
+<div class="wall-post-item">
+	<div class="post-header">
+		<img src="data:image/png;base64,{{wallPost.authorAvatar}}" class="post-avatar"/>
+		<div class="name-in-row">
+			{{wallPost.authorName}}
+		</div>
+		<div>{{wallPost.created | date: 'medium'}}</div>
+	</div>
+	<div *ngIf="!this.isEditingOn" class="post-content">
+		<div class="post-text">{{wallPost.text}}</div>
+		<img *ngIf="wallPost.picture !== ''" src="data:image/png;base64,{{wallPost.picture}}" class="post-picture"/>
+	</div>
+	<div *ngIf="this.isEditingOn" class="post-editing-content">
+		<div [formGroup]="editRecordForm" class="post-edit-picture-input">
+			<textarea [formControl]="textControl" id="wall-post-text-edit" class="form-control"></textarea>
+			<img *ngIf="wallPost.picture !== ''" src="data:image/png;base64,{{wallPost.picture}}" class="post-picture"/>
+		</div>
+	</div>
+	<div *ngIf="this.isEditingOn" class="post-additional">
+		<label for="wall-post-image-edit-input" class="post-additional-item">
+			<img class="additional-icon" src="assets/upload.svg"/>
+		</label>
+		<input (change)="getBase64FromImage()" type="file" id="wall-post-image-edit-input"/>
+		<div class="post-additional-item" (click)="cancelEditing()">
+			<img class="additional-icon" src="assets/cancel.svg"/>
+			<p>&#160;Отмена</p>
+		</div>
+		<div class="post-additional-item" (click)="saveEditedPost()">
+			<img class="additional-icon" src="assets/send.svg"/>
+			<p>&#160;Сохранить изменения</p>
+		</div>
+	</div>
+	<div class="post-additional">
+		<div class="post-additional-item" (click)="this.setWallPostRating(this.wallPost.postId, true)">
+			<img class="additional-icon" src="assets/love.svg"/>
+			<p>&#160;{{wallPost.likes}}</p>
+		</div>
+		<div class="post-additional-item" (click)="this.setWallPostRating(this.wallPost.postId, false)">
+			<img class="additional-icon" src="assets/dislike.svg"/>
+			<p>&#160;{{wallPost.dislikes}}</p>
+		</div>
+		<div class="post-additional-item" (click)="this.commentsToggle()">
+			<img class="additional-icon" src="assets/comments.svg"/>
+			<p>&#160;{{wallPost.comments.length}}</p>
+		</div>
+		<div *ngIf="this.myUserId === this.userIdFromParams || this.myUserId === wallPost.authorId" class="post-additional-item" (click)="editPost()">
+			<img class="additional-icon" src="assets/edit.svg"/>
+		</div>
+		<div *ngIf="this.myUserId === this.userIdFromParams || this.myUserId === wallPost.authorId" class="post-additional-item" (click)="this.deletePost(wallPost.postId)">
+			<img class="additional-icon" src="assets/delete.svg"/>
+		</div>
+	</div>
+	<ng-container *ngIf="isCommentsOpen">
+		<div class="comments-border">
+			<app-wall-comment *ngFor="let item of wallPost.comments" [wallComment]="item" [myUserId]="myUserId" [userIdFromParams]="userIdFromParams" [isItFeed]="this.isItFeed"></app-wall-comment>
+			<app-wall-create-comment [wallPostId]="wallPost.postId" [myUserId]="myUserId" [userIdFromParams]="userIdFromParams" [isItFeed]="this.isItFeed"></app-wall-create-comment>
+		</div>
+	</ng-container>
+</div>

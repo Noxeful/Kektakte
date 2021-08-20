@@ -1,0 +1,61 @@
+app-friends-mini-list {
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: 50px;
+	//border: 2px solid rgba(255,14,0,0.99);
+	border-radius: 5px;
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-between;
+	align-content: space-between;
+	flex-direction: row;
+	flex-flow: row wrap;
+
+	h3 {
+		display: block;
+		width: 100%;
+		color: rgba(0,0,0,0.51);
+	}
+
+}
+
+.friend-item {
+	display: flex;
+	box-sizing: border-box;
+	flex-direction: column;
+	width: 90px;
+	height: 90px;
+	flex-grow: 1;
+	margin: 3px;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.friend-item:hover {
+	background-color: rgba(248,253,255,0.51);
+
+}
+
+.fl-avatar {
+	box-sizing: border-box;
+	width: 70px;
+	height: 70px;
+	border-radius: 50px;
+}
+
+.fl-name {
+	max-width: 10ch;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.friends-header {
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+
+	.btn {
+		display: flex;
+		flex-grow: 1;
+	}
+}
