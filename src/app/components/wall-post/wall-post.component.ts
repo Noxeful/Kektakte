@@ -26,6 +26,7 @@ export class WallPostComponent implements OnInit {
   public tempText: string;
   public tempPicture: string;
 
+
   public editRecordForm: FormGroup;
   public textControl: FormControl;
   public isEditingOn: boolean = false;
